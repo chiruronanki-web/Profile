@@ -185,6 +185,18 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-resume {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: white;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+}
+
+.btn-resume:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+    background: linear-gradient(135deg, #047857, #059669);
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -463,16 +475,20 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .skill-item {
     background: linear-gradient(135deg, #2563eb, #3b82f6);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 18px;
+    font-size: 0.85rem;
     font-weight: 500;
     transition: transform 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .skill-item:hover {
@@ -536,6 +552,18 @@ section {
 
 .contact-details p {
     color: #64748b;
+}
+
+.contact-link {
+    color: #2563eb;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.contact-link:hover {
+    color: #1d4ed8;
+    border-bottom-color: #1d4ed8;
 }
 
 .contact-form {
