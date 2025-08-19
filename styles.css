@@ -156,7 +156,8 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -514,11 +515,11 @@ section {
 
 /* Contact Section */
 .contact {
-    background: #ffffff;
+    background:none#ffffff;
 }
 
 .contact-content {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     max-width: 1000px;
@@ -527,13 +528,18 @@ section {
 
 .contact-info {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between; /* spread items across row */
+    flex-wrap: wrap; /* allow wrapping on smaller screens */
+    gap: 2rem; /* spacing between items */
+    max-width: 1400px; /* keeps row contained */
+    margin: 0 auto; /* center container */
 }
 
 .contact-item {
+    flex: 1 1 calc(25% - 2rem); /* 4 per row */
+    min-width: 220px; /* prevents shrinking too much */
     display: flex;
-    align-items: center;
+    align-items: center; /* vertically center icon + text */
     gap: 1rem;
     padding: 1.5rem;
     background: linear-gradient(135deg, #f8fafc, #e2e8f0);
@@ -542,7 +548,7 @@ section {
 }
 
 .contact-item:hover {
-    transform: translateX(10px);
+    transform: translateY(-5px);
 }
 
 .contact-icon {
@@ -584,12 +590,16 @@ section {
 }
 
 .contact-form {
-    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    background: none;
+    /* linear-gradient(135deg, #f8fafc, #e2e8f0);
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 12px; */
 }
 
 .form-group {
+    background: linear-gradient(145deg, #f9f9f9, #e9eef5);
+    padding: 10px;
+    border-radius: 8px;
     margin-bottom: 1.5rem;
 }
 
@@ -746,5 +756,5 @@ section {
 
 /* Smooth scrolling for anchor links */
 html {
-    scroll-padding-top: 80px;
+    scroll-padding-top: 100px;
 }

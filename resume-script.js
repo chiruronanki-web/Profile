@@ -109,23 +109,6 @@ function downloadResume() {
     }, 2000);
 }
 
-// Alternative: Download as HTML file
-function downloadAsHTML() {
-    const resumeContent = document.querySelector('body').innerHTML;
-    const blob = new Blob([resumeContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'chiranjeevi_ronanki_Resume.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    
-    showNotification('Resume downloaded as HTML file!', 'success');
-}
-
 // Notification system
 function showNotification(message, type = 'info') {
     // Remove existing notifications
@@ -184,35 +167,6 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Add download options to the page
-function addDownloadOptions() {
-    const headerActions = document.querySelector('.header-actions');
-    
-    // Add HTML download button
-    const htmlDownloadBtn = document.createElement('button');
-    htmlDownloadBtn.className = 'btn btn-secondary';
-    htmlDownloadBtn.innerHTML = '<i class="fas fa-file-code"></i> Download HTML';
-    htmlDownloadBtn.onclick = downloadAsHTML;
-    
-    // Insert before the main download button
-    const mainDownloadBtn = headerActions.querySelector('.btn-download');
-    headerActions.insertBefore(htmlDownloadBtn, mainDownloadBtn);
-}
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
 // Add print functionality
 function addPrintButton() {
     const headerActions = document.querySelector('.header-actions');
@@ -264,7 +218,6 @@ function addCopyContactInfo() {
 
 // Initialize all functionality when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    addDownloadOptions();
     addPrintButton();
     addCopyContactInfo();
     
@@ -370,4 +323,55 @@ document.addEventListener('DOMContentLoaded', () => {
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(section);
     });
+});
+
+// Back to top button
+const backToTopBtn = document.createElement('button');
+backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+backToTopBtn.className = 'back-to-top';
+backToTopBtn.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+`;
+document.body.appendChild(backToTopBtn);
+
+// Show/hide back to top button
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = 'flex';
+    } else {
+        backToTopBtn.style.display = 'none';
+    }
+});
+
+// Back to top functionality
+backToTopBtn.addEventListener('click', () => {
+    // const headerOffset = document.querySelector('header')?.offsetHeight || 80; // adjust 80 if your header is taller
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Hover effect for back to top button
+backToTopBtn.addEventListener('mouseenter', () => {
+    backToTopBtn.style.transform = 'scale(1.1)';
+});
+backToTopBtn.addEventListener('mouseleave', () => {
+    backToTopBtn.style.transform = 'scale(1)';
 });
